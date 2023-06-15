@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array tasks</title>
+</head>
+<body>
+  <u><h2>Array Tasks</h2></u>
+    <h3>Search an element in array</h3>
+    arr =[10,20,30,40,50,60,70,80,90,100];
+   <br><br>
+   <div>
+   <input type="text" id="search" placeholder="Enter the Element">
+   <button type="button" onclick="searchelement()">Search</button>
+   <p id="sElement"></p>
+</div>
+<br><hr>
+
+<h3>Remove an given element from an array</h3>
+arr =[10,20,30,40,50,60,70,80,90,100];
+<br><br>
+<div>
+   <input type="text" id="remove" placeholder="Enter the Element">
+   <button type="button" onclick="removeelement()">Remove</button><br><br>
+   <span>arr = [</span><b id="rElement"></b><span>]</span>
+</div>
+<br><hr>
+
+<h3>Compare 2 array & find the similar elements</h3>
+<div>
+    arr =[10,20,30,40,50,60,70,80,90,100];
+   <br><br>
+    arr1 =[20,40,60,80,100];
+    <br><br>
+    <button type="button" onclick="simielement()">Find similar</button><br><br>
+   <span>similar  = [</span><b id="similar"></b><span>]</span>
+</div>
+<br><hr>
+
+<h3>Compare 2 array & find the unique elements</h3>
+<div>
+    arr =[10,20,30,40,50,60,70,80,90,100];
+   <br><br>
+    arr1 =[20,40,60,80,100];
+
+    <br><br>
+    <button type="button" onclick="uniqueelement()">Find unique</button>
+    <br><br>
+  <span>arr = [</span> <b id="unique"></b><span>]</span>
+</div>
+<br> <hr>
+
+<h3>Move zero's to an end of an array</h3>
+<div>
+   arr2 =[0,12,0,45,18,0,7,0,8]
+
+   <br><br>
+   <button type="button" onclick="zeromove()">Move</button><br><br>
+   <span>arr2 = [</span><b id="move"></b><span>]</span>
+</div>
+<br><hr>
+
+<h3>Sort the given array</h3>
+<div>
+   arr3 =[12,3,45,6,0,83,99]
+
+   <br><br>
+   <button type="button" onclick="sortelement()">Sort</button><br><br>
+   <span>arr3 = [</span><b id="sort"></b><span>]</span>
+</div>
+<br><hr>
+
+<h3>Remove duplicate element in given array</h3>
+<div>
+   arr4 =[7,99,3,7,80,99,30];
+
+   <br><br>
+   <button type="button" onclick="removeduplicate()">Remove</button><br><br>
+   <span>arr4 =[</span><b id="duplicate"></b><span>]</span>
+</div>
+<br><hr>
+
+<h3>Find duplicate element in given array</h3>
+<div>
+   arr4 =[7,99,3,7,80,99,30];
+
+   <br><br>
+   <button type="button" onclick="finduplicate()">Find</button><br><br>
+   <span>arr4 =[</span><b id="find"></b><span>]</span>
+</div>
+<br><hr>
+
+<script>
+  let arr =[10,20,30,40,50,60,70,80,90,100];
+  let arr1 =[20,40,60,80,100];
+  let arr2 =[0,12,0,45,18,0,7,0,8];
+  let arr3 =[12,3,45,6,0,83,99];
+  let arr4 =[7,99,3,7,80,99,30];
+  let count=0;
+  let attempt=0;
+
+  function finduplicate()
+{
+  let duplicate=[];
+  for(let i=0; i<arr4.length; i++)
+  {
+    for(let j=i+1; j<arr4.length; j++)
+    {
+      if(arr4[i]==arr4[j])
+      {
+        duplicate.push(arr4[i]);
+      }
+    }
+  }
+  document.getElementById('find').innerHTML=duplicate;
+}
+
+  function removeduplicate()
+  {
+    for(let i=0; i<arr4.length; i++)
+    {
+     for(let j=i+1; j<arr4.length; j++){
+       if(arr4[i] == arr4[j]){
+           arr4.splice(j,1);
+       }
+     }
+    }
+    document.getElementById('duplicate').innerHTML=arr4;
+  }
+
+  function sortelement()
+  {
+   for(i=0; i<arr3.length; i++)
+   {
+     for(j=i+1; j<arr3.length; j++)
+     {
+       if(arr3[i] > arr3[j])
+       {
+           attempt=arr3[i];
+           arr3[i]=arr3[j];
+           arr3[j]=attempt;
+       }
+     }  
+   }
+   document.getElementById('sort').innerHTML=arr3;
+   
+  }
+
+  function zeromove(){
+   let zero=[];
+   let zeros=[];
+
+   for(let i=0; i<arr2.length; i++){
+       if(arr2[i]!=0){
+           zero.push(arr2[i]);
+       }else{
+           zeros.push(arr2[i]);
+       }
+   }
+   document.getElementById('move').innerHTML=zero.concat(zeros);
+  }
+
+  function uniqueelement(){
+    let unique=[];
+    let unicount=0;
+
+     for(let i=0;i<arr.length; i++){
+       for(let j=0; j<arr1.length; j++){
+          if(arr[i]!=arr1[j]){
+           unicount++;
+           }
+        }if(unicount==arr1.length){
+          unique.push(arr[i]); 
+        }
+        unicount=0;
+  }
+  document.getElementById('unique').innerHTML=unique;
+  }
+
+  function simielement(){
+   for(let i=0;i<arr.length; i++){
+       for(let j=0; j<arr1.length; j++){
+
+       if(arr[i]==arr1[j]){
+           document.getElementById('similar').innerHTML+=arr[i]+",";
+       }
+   }
+  }
+}
+
+  function removeelement(){
+   let a=Number(document.getElementById('remove').value);
+   for(let i=0; i<arr.length; i++){
+       if(a==arr[i]){
+           arr.splice(i,1);
+       }
+   }
+    document.getElementById('rElement').innerHTML=arr;
+  }
+
+
+  function searchelement(){
+   let a=Number(document.getElementById('search').value);
+  for(let i=0; i<arr.length; i++){
+   if(a==arr[i]){
+       count++;
+   }if(count>=1){
+       document.getElementById('sElement').innerHTML ="Number Found"
+   }else{
+       document.getElementById('sElement').innerHTML ="Number not Found"
+   }
+     
+  } }
+</script>
+
+<u><h2>Array Methods Task</h2></u>
+
+<h3>Push Method</h3>
+<div>
+  <input type="text" id="push" name="push">
+  <button type="button" onclick="arrmethods(push)">Push</button><br><br>
+   <div>Before Push: [<span id="pus"></span>]</div><br>
+  <div>After Push: [<span id="ans1"></span>]</div>
+  </div>
+  <hr><br>
+
+  <h3>Pop Method</h3>
+<div>
+   <div>Before Pop: [<span id="pops"></span>]</div><br>
+   <button type="button" onclick="arrmethods(pop)">Pop</button><br><br>
+   <div>After Pop: [<span id="ans2"></span>]</div>
+  </div>
+  <hr><br>
+
+  <h3>Shift Method</h3>
+<div>
+   <div>Before Shift: [<span id="shifts"></span>]</div><br>
+   <button type="button" onclick="arrmethods(shift)">Shift</button><br><br>
+   <div>After Shift: [<span id="ans3"></span>]</div>
+  </div>
+  <hr><br>
+
+  <h3>Includes Method</h3>
+<div>
+  <div>Array: [<span id="includess"></span>]</div><br>
+  <input type="text" id="includes" name="inclu">
+  <button type="button" onclick="arrmethods(includes)">Includes</button>
+  <p id="ans5"></p>
+  </div>
+  <hr><br>
+
+  <h3>Unshift Method</h3>
+<div>
+  <input type="text" id="unshift" name="unshift">
+  <button type="button" onclick="arrmethods(unshift)">Unshift</button><br><br>
+   <div>Before Unshift: [<span id="unshifts"></span>]</div><br>
+  <div>After Unshift: [<span id="ans4"></span>]</div>
+  </div>
+  <hr><br>
+
+
+   <script>
+    var array=[1,2,3,4,5,6];
+    document.getElementById('pus').innerHTML=array;
+
+    function arrmethods(methodname)
+    {
+      if(methodname==push)
+      {
+        let a=Number(document.getElementById('push').value);
+        push(a);
+      }
+      else if(methodname==pop)
+      {
+        pop();
+      }
+      else if(methodname==shift)
+      {
+        shift();
+      }
+      else if(methodname==includes)
+      {
+        let b=Number(document.getElementById('inclu').value);
+        includes(b);
+      }
+      else if(methodname==unshift)
+      {
+        let c=Number(document.getElementById('unshift').value);
+        unshift(c);
+      }
+    } 
+
+
+    function push(a)
+    {
+      array[array.length]=a;
+      document.getElementById('ans1').innerHTML=array;
+    }
+    function pop()
+    {
+      document.getElementById('pops').innerHTML=array;
+      let result=[];
+      for(let i=0; i<array.length-1; i++)
+      {
+        result[i]=array[i];
+      }
+        document.getElementById('ans2').innerHTML=result;
+    }       
+    function shift()
+    {
+      document.getElementById('shifts').innerHTML=array;
+      let answer=[];
+      for(i=0; i<array.length; i++)
+      {
+        answer[i-1]=array[i];
+      }
+      document.getElementById('ans3').innerHTML=answer;
+    }
+    function unshift(c)
+    {
+      document.getElementById('unshifts').innerHTML=array;
+      let res=[c];
+        res=res.concat[array];
+      document.getElementById('ans4').innerHTML=res;
+  } 
+  function includes(b)
+  {
+    document.getElementById('includess').innerHTML=array;
+    let count=0;
+    for(i=0; i<array.length; i++)
+    {
+       if(b==array[i])
+       {
+        count++;
+       }
+    }
+    if(1<count)
+    {
+      document.getElementById('ans5').innerHTML=true;
+    }
+    else
+    {
+      document.getElementById('ans5').innerHTML=false;
+    }
+  }
+  </script>
+    
+</body>
+</html>
