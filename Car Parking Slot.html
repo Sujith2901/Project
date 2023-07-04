@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parking </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body{
+          width: 100%;
+          height: 100%;
+          background-image: url(background\ image.jpg);
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <h2 class="text-white">Car Parking SLot</h2>
+    <div class="row g-3">
+      <div class="col-lg-5 ms-4 ">
+        <input type="text" class="form-control" placeholder="Vehicle Number:" aria-label="Vehicle Number" id="EntryVh">
+      </div>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" placeholder="Owner Name" aria-label="Owner Name" id="OwnName">
+      </div>
+
+      <div class="row my-5">
+        <div class="col-lg-6 col-md-6 col-12 ">
+            
+        <div class="card w-100 border-4 border border-primary">
+            <div class="card-body">
+              <h5 class="card-title">Parking</h5>
+              <p class="card-text">Slot 1:</p>
+              <a href="#" class="btn btn-success onclick="bookSlot(1,'checkin1')">Book</a>
+              <a href="#" class="btn btn-danger" onclick="exit(1,'checkin1')">Exit</a>
+              <h4 id="checkin1"></h4>
+            </div>
+        </div>
+          </div>
+          <br>
+          <!--Slot 2-->
+          <div class="col-lg-6 col-md-6 col-12">
+              <div class="card w-100 border-4 border border-primary">
+                <div class="card-body">
+                  <h5 class="card-title">Parking</h5>
+                  <p class="card-text">Slot 2:</p>
+                  <a href="#" class="btn btn-success" onclick="bookSlot(2,'checkin2')">Book</a>
+                  <a href="#" class="btn btn-danger"  onclick="exit(2,'checkin2')">Exit</a>
+                  <h4 id="checkin2"></h4>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-lg-6 col-md-6 col-12 ">
+                <!--Slot 3-->
+           <div class="card w-100 border-4 border border-primary" >
+          <div class="card-body">
+      <h5 class="card-title">Parking</h5>
+      <p class="card-text">Slot 3:</p>
+      <a href="#" class="btn btn-success" onclick="bookSlot(3,'checkin3')">Book</a>
+      <a href="#" class="btn btn-danger"  onclick="exit(3,'checkin3')">Exit</a>
+      <h4 id="checkin3"></h4>
+    </div>
+  </div>
+  
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 ">
+                <div class="card w-100 border-4 border border-primary" >
+                    <div class="card-body">
+                      <h5 class="card-title">Parking</h5>
+                      <p class="card-text">Slot 4:</p>
+                      <a href="#" class="btn btn-success" onclick="bookSlot(4,'checkin4')">Book</a>
+                      <a href="#" class="btn btn-danger"  onclick="exit(4,'checkin4')">Exit</a>
+                      <h4 id="checkin4"></h4>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-lg-6 col-md-6 col-12 ">
+                <div class="card w-100  border-4 border border-primary">
+                    <div class="card-body">
+                      <h5 class="card-title">Parking</h5>
+                      <p class="card-text">Slot 5:</p>
+                      <a href="#" class="btn btn-success" onclick="bookSlot(5,'checkin5')">Book</a>
+                      <a href="#" class="btn btn-danger"  onclick="exit(5,'checkin5')">Exit</a>
+                      <h4 id="checkin5"></h4>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 ">
+                <div class="card w-100 border-4 border border-primary">
+                    <div class="card-body">
+                      <h5 class="card-title">Parking</h5>
+                      <p class="card-text">Slot 6:</p>
+                      <a href="#" class="btn btn-success" onclick="bookSlot(6,'checkin6')">Book</a>
+                      <a href="#" class="btn btn-danger"  onclick="exit(6,'checkin6')">Exit</a>
+                      <h4 id="checkin6"></h4>
+                    </div>
+                  </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+      <script>
+
+        var Evh="";
+        var Oname="";
+        var checkin=[];
+            function getData() {
+            Evh = document.getElementById('EntryVh');
+            Oname = document.getElementById('OwnName'); 
+            if(Evh.value != '' && Oname.value != ''){
+                return true;
+            }
+            return false;
+        }
+        
+        function bookSlot(slotNum, slotMsgId){
+            
+            if(getData()){
+                let entry = "Vehicle Number:" + Evh.value + " " + "Owner Name:" + Oname.value;
+                // console.log(checkin);
+                if(checkin[slotNum] == undefined)
+                {
+                    alert("Booked Slot : " + slotNum);
+                    checkin[slotNum] = entry;
+                    document.getElementById(slotMsgId).innerHTML = entry;
+                    Evh.value = "";
+                    Oname.value = "";
+                    console.log(checkin);
+                }else{
+                    alert("The Chosen Slot is already Taken... Please Select another Slot..");
+                }
+            }
+            else{
+            alert("Please fill the details");
+            }
+        }
+        
+        
+        function exit(slotNum, slotMsgId){
+        
+        if(checkin[slotNum] != undefined)
+        {
+            checkin[slotNum] = undefined;
+            alert("Your'e Exited....Slot " + slotNum + " made available now...");
+            document.getElementById(slotMsgId).innerHTML = "";
+        }else{
+            alert("Slot is alreadhy Free only... ");
+        }
+        }
+          </script>
+</body>
+</html>
